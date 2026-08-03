@@ -3,20 +3,15 @@ const openingText = "Hey Unziiii... Happy Birthday! ✨";
 let typeIndex = 0;
 
 function typeWriter() {
-    if (typeIndex < openingText.length) {
-        document.getElementById("typing-text").innerHTML += openingText.charAt(typeIndex);
+    const typingElement = document.getElementById("typing-text");
+    if (typingElement && typeIndex < openingText.length) {
+        typingElement.innerHTML += openingText.charAt(typeIndex);
         typeIndex++;
         setTimeout(typeWriter, 90);
     }
 }
 
-window.onload = () => {
-    typeWriter();
-    initParticles();
-    createBalloons();
-};
-
-// Screen Navigation
+// Screen Navigation Function
 function nextScreen(screenId) {
     const screens = document.querySelectorAll('.screen');
     screens.forEach(s => s.classList.remove('active'));
@@ -41,6 +36,7 @@ function revealPhoto(cardElement) {
 // Sky Blue Particles Background
 function initParticles() {
     const canvas = document.getElementById('particleCanvas');
+    if(!canvas) return;
     const ctx = canvas.getContext('2d');
     
     function resize() {
@@ -90,6 +86,7 @@ function initParticles() {
 // Floating Sky Blue Balloons Generator
 function createBalloons() {
     const container = document.getElementById('balloonContainer');
+    if(!container) return;
     for (let i = 0; i < 12; i++) {
         let balloon = document.createElement('div');
         balloon.className = 'balloon';
@@ -102,10 +99,25 @@ function createBalloons() {
 
 // Confetti Effect (Black & Sky Blue Tones)
 function launchConfetti() {
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#87ceeb', '#00d2ff', '#ffffff', '#111111']
-    });
+    if (typeof confetti === 'function') {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#87ceeb', '#00d2ff', '#ffffff', '#111111']
+        });
+    }
 }
+
+// Attach functions to Global Window Object for Vite Module Support
+window.nextScreen = nextScreen;
+window.triggerFinalReveal = triggerFinalReveal;
+window.revealPhoto = revealPhoto;
+window.launchConfetti = launchConfetti;
+
+// Initialize on DOM Ready
+document.addEventListener("DOMContentLoaded", () => {
+    typeWriter();
+    initParticles();
+    createBalloons();
+});
