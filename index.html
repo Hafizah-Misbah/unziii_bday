@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Unziiii! ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Sky Blue Canvas Particles Background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Floating Sky Blue Balloons -->
+    <div class="balloon-container" id="balloonContainer"></div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="app-container">
+
+        <!-- SCREEN 1: OPENING ANIMATION -->
+        <section id="screen-opening" class="screen active">
+            <div class="glass-card">
+                <h1 class="glow-text" id="typing-text"></h1>
+                <p class="sub-text">A tiny magical journey built just for you ✨</p>
+                <button class="btn glow-btn" onclick="nextScreen('screen-quest-1')">Begin Quest 🚀</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: QUEST MOMENT 1 (Kindheartedness & 10 Years) -->
+        <section id="screen-quest-1" class="screen">
+            <div class="glass-card">
+                <span class="badge">Moment 01</span>
+                <h2>10 Years of Pure Magic 💫</h2>
+                <p class="story-text">
+                    From shared school benches to endless laughs, 10 years of school friendship flew by! 
+                    You have always been the most **kindhearted** and tender soul—even if you tear up at the smallest emotional scenes! 🥺❤️
+                </p>
+                <button class="btn" onclick="nextScreen('screen-quest-2')">Next Memory ➡️</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 2.2: QUEST MOMENT 2 (Bitter-Sweet Note) -->
+        <section id="screen-quest-2" class="screen">
+            <div class="glass-card">
+                <span class="badge">Moment 02</span>
+                <h2>Our Final School Chapter 🎓</h2>
+                <p class="story-text">
+                    This is our **last year together in school**. Time really flies, doesn't it? 
+                    Let’s cherish every single day, every classroom laugh, and every moment of this final year. No matter where life takes us, this 10-year bond stays unbreakable! ♾️
+                </p>
+                <button class="btn" onclick="nextScreen('screen-quest-3')">One More Thing... 🤫</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 2.3: QUEST MOMENT 3 (Biryani Touch) -->
+        <section id="screen-quest-3" class="screen">
+            <div class="glass-card">
+                <span class="badge">Important Wish 🍛</span>
+                <h2>The Biryani Rule! 😋</h2>
+                <p class="story-text biryani-text">
+                    "May your birthday have as much happiness as your heart deserves... and as much extra Aloo as your Biryani demands!" 🍗✨
+                </p>
+                <button class="btn glow-btn" onclick="triggerFinalReveal()">Reveal Final Surprise 🎉</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: FINAL REVEAL & PHOTO GALLERY -->
+        <section id="screen-final" class="screen">
+            <div class="glass-card final-card">
+                <h1 class="celebrate-title">Happy Birthday Unziiii! 🎈🥳</h1>
+                <p class="date-tag">3rd August 2009 🎂</p>
+                <p class="hint-text">✨ Tap on each card below to unlock the memories ✨</p>
+
+                <div class="photo-grid">
+                    <!-- Category 1: Cute -->
+                    <div class="photo-card" onclick="revealPhoto(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <span class="icon">🌸</span>
+                                <h3>Cute</h3>
+                                <p>Tap to reveal</p>
+                            </div>
+                            <div class="card-back">
+                                <img src="assets/cute.jpeg" alt="Cute Unzila">
+                                <span>Cute Unziiii 👓✨</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Attractive -->
+                    <div class="photo-card" onclick="revealPhoto(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <span class="icon">✨</span>
+                                <h3>Attractive</h3>
+                                <p>Tap to reveal</p>
+                            </div>
+                            <div class="card-back">
+                                <img src="assets/attractive.jpeg" alt="Attractive Unzila">
+                                <span>Mehendi & Elegance 🌿💫</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Beautiful -->
+                    <div class="photo-card" onclick="revealPhoto(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <span class="icon">👑</span>
+                                <h3>Beautiful</h3>
+                                <p>Tap to reveal</p>
+                            </div>
+                            <div class="card-back">
+                                <img src="assets/beautiful.jpeg" alt="Beautiful Unzila">
+                                <span>Graceful Vibes 🌼⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn replay-btn" onclick="launchConfetti()">More Confetti! 🎊</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

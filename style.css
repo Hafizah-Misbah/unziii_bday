@@ -1,0 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #050b14;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Background Canvas */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Floating Sky Blue Balloons */
+.balloon-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 50px;
+    background: rgba(135, 206, 235, 0.7);
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3), 0 0 15px #00d2ff;
+    animation: floatUp 8s linear infinite;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 19px;
+    width: 2px;
+    height: 15px;
+    background: #87ceeb;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+}
+
+/* UI Container */
+.app-container {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+.screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: rgba(10, 25, 47, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(0, 210, 255, 0.2);
+}
+
+.glow-text {
+    color: #87ceeb;
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff;
+    min-height: 70px;
+}
+
+.sub-text {
+    color: #a0c4ff;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+.badge {
+    background: rgba(0, 210, 255, 0.2);
+    color: #00d2ff;
+    border: 1px solid #00d2ff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #e0f7fa;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.story-text {
+    color: #d1e8e2;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.biryani-text {
+    font-style: italic;
+    color: #ffd166;
+}
+
+/* Buttons */
+.btn {
+    background: linear-gradient(135deg, #00d2ff, #0072ff);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
+}
+
+/* Final Screen Styling */
+.celebrate-title {
+    font-family: 'Sacramento', cursive;
+    font-size: 3rem;
+    color: #87ceeb;
+    text-shadow: 0 0 15px #00d2ff;
+}
+
+.date-tag {
+    color: #a0c4ff;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.hint-text {
+    font-size: 0.85rem;
+    color: #87ceeb;
+    margin-bottom: 20px;
+}
+
+/* Photo Cards Grid */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.photo-card {
+    height: 230px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.photo-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 210, 255, 0.4);
+}
+
+.card-front {
+    background: rgba(15, 30, 55, 0.9);
+    color: #87ceeb;
+}
+
+.card-front .icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.card-back {
+    background: #0a192f;
+    transform: rotateY(180deg);
+    overflow: hidden;
+    padding: 8px;
+}
+
+.card-back img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-back span {
+    font-size: 0.75rem;
+    color: #87ceeb;
+    margin-top: 5px;
+}
+
+.replay-btn {
+    margin-top: 10px;
+}
